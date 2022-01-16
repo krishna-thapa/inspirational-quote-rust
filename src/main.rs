@@ -2,6 +2,8 @@ use std::error::Error;
 
 use serde::Deserialize;
 
+use colour::{yellow, magenta, green, cyan, red};
+
 #[derive(Deserialize, Debug)]
 struct Quote {
     id: i16,
@@ -22,9 +24,22 @@ fn get_quotes(url: &str) -> Result<Vec<Quote>, Box<dyn Error>> {
     Ok(quotes)
 }
 
-fn main() {
+fn render_quotes(quotes: &Vec<Quote>) {
+    for i in quotes {
+        yellow!("> {}\n", i.id);
+        red!("-- CsvId: {}\n", i.csvId);
+        magenta!("-- Quote: {}\n", i.quote);
+        cyan!("-- >> Author: {}\n", i.author);
+        green!("-- >> Genre: {}\n\n", i.genre);
+    }
+}
+
+fn main() -> Result<(), Box<dyn Error>> {
     println!("=== Running the main function! ===");
     let url: &str = "http://localhost:9000/quote/randomTen";
-    let quotes: Result<Vec<Quote>, Box<dyn Error>> = get_quotes(url);
-    dbg!(quotes);
+    let quotes: Vec<Quote> = get_quotes(url)?;
+    
+    render_quotes(&quotes);
+
+    Ok(())
 }
