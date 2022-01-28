@@ -53,3 +53,14 @@ Some common cargo commands are (see all commands with --list):
 
 ### Create a new lib package:
 - `cargo new --lib quotesapi`
+
+### Install cargo deb to distribute package
+- `cargo install cargo-deb`
+- To create a package, just run: `cargo deb`
+- Will cread a .deb package under `/target/debain`
+- Can install using: `sudo dpkg -i <deb_package_name>`
+- Make the `dotenv()?;` to `dotenv();` since there won't be any env file inside the deb package
+- Make sure to give the required environment parameter like: `export API_KEY=secert`
+- Make sure the backend API is up and running from inspiration quote api
+- You can run the deb file from anywhere, just run with the example project name: `inspirational-quote-rust`
+- Remove the deb package by: `sudo dpkg --remove inspirational-quote-rust`

@@ -2,10 +2,16 @@
 name = "inspirational-quote-rust"
 version = "0.1.0"
 edition = "2021"
+description = "A simple cli quotes reader app"
+license = "MIT"
+authors = ["Krishna Thapa"]
+readme = "README.md"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 colour = "0.6.0"
+crossterm = "0.22.1"
 dotenv = "0.15.0"
 quotesapi = {path = "./quotesapi"}
+termimad = "0.20.0"
